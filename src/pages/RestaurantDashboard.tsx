@@ -7,7 +7,7 @@ import { ImpactCounter } from "@/components/ImpactCounter";
 import { useToast } from "@/hooks/use-toast";
 import { getFoodPrediction } from "@/lib/gemini";
 // import  MapView  from "@/components/MapView";
-import MapView from "@/components/MapView";
+import mapView from "@/components/mapView";
 
 import { savePickupRequest } from "@/lib/firestore";
 //  import { db } from "@/lib/firebase";
@@ -337,7 +337,7 @@ const RestaurantDashboard = () => {
 
 
               <div className="mt-6">
-                <MapView
+                <mapView
                 lat={28.6139}
                  lng={77.2090}
                  label="Green Kitchen Restaurant"
