@@ -1,5 +1,10 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+<script src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`} />
+
+
 type MapProps = {
   lat: number;
   lng: number;
