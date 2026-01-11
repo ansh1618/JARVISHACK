@@ -1,8 +1,8 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+// const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-<script src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`} />
+// <script src={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`} />
 
 
 type MapProps = {
@@ -20,6 +20,7 @@ const containerStyle = {
 export default function MapView({ lat, lng, label }: MapProps) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_KEY,
+    libraries: ["places"],
   });
 
   if (!isLoaded) return <p>Loading map...</p>;
