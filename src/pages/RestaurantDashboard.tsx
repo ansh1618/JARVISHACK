@@ -6,7 +6,9 @@ import { Label } from "@/components/ui/label";
 import { ImpactCounter } from "@/components/ImpactCounter";
 import { useToast } from "@/hooks/use-toast";
 import { getFoodPrediction } from "@/lib/gemini";
-import  MapView  from "@/components/MapView";
+// import  MapView  from "@/components/MapView";
+import MapView from "@/components/MapView";
+
 import { savePickupRequest } from "@/lib/firestore";
 //  import { db } from "@/lib/firebase";
 import { db } from "../lib/firebase";
