@@ -36,11 +36,11 @@ import {
 import { cn } from "@/lib/utils";
 
 // const [freshness, setFreshness] = useState<string | undefined>(undefined);
-const [freshness, setFreshness] = useState<string | null>(null);
+
 
 const RestaurantDashboard = () => {
   const [mealType, setMealType] = useState("lunch");
-
+const [freshness, setFreshness] = useState<string | null>(null);
  const [aiSuggestion, setAiSuggestion] = useState<string | null>(null);
  const [aiLoading, setAiLoading] = useState(false);
 
