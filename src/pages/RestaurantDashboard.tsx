@@ -349,14 +349,14 @@ const RestaurantDashboard = () => {
 
 
 
-              <Button
+              <Button 
              variant="hero"
              className="w-full mb-6"
-             onClick={handleGetPrediction}
-             disabled={aiLoading}
->
+            //  onClick={handleGetPrediction}
+            //  disabled={aiLoading}
+>          
              <Sparkles className="mr-2 h-4 w-4" />
-             {aiLoading ? "Analyzing with AI..." : "Get AI Prediction"}
+             {aiLoading ? "Notifying..." : " Notify Nearby NGOs"}
             </Button>
 
             </div>
