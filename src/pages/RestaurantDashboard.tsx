@@ -119,6 +119,43 @@ const RestaurantDashboard = () => {
   }
 };
 
+const handleNotify = async () => {
+  if (!foodType || !quantity || !freshness) {
+    toast({
+      title: "Please fill all fields",
+      description: "Food type, quantity and freshness window are required.",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  try {
+    await savePickupRequest({
+      foodType,
+      quantity: Number(quantity),
+      freshnessWindow: freshness,
+      restaurantName: "Green Kitchen Restaurant",
+      timestamp: new Date(),
+    });
+
+    toast({
+      title: "Excess Food Reported!",
+      description: "Nearby NGOs have been notified.",
+    });
+
+    // Reset form
+    setFoodType("");
+    setQuantity("");
+    setFreshness(null);
+  } catch (error) {
+    toast({
+      title: "Something went wrong",
+      description: "Could not notify NGOs. Try again.",
+      variant: "destructive",
+    });
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-hero">
@@ -349,15 +386,14 @@ const RestaurantDashboard = () => {
 
 
 
-              <Button 
-             variant="hero"
-             className="w-full mb-6"
-            //  onClick={handleGetPrediction}
-            //  disabled={aiLoading}
->          
-             <Sparkles className="mr-2 h-4 w-4" />
-             {aiLoading ? "Notifying..." : " Notify Nearby NGOs"}
-            </Button>
+              <button
+  onClick={handleNotify}
+  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+>
+  <Send size={18} />
+  Notify Nearby NGOs
+</button>
+
 
             </div>
 
