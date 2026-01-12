@@ -7,7 +7,8 @@ export async function savePickupRequest(data: {
   restaurantName: string;
   foodType: string;
   quantity: number;
-  freshness: string;
+  freshnessWindow: string;
+  timestamp: Date;
   lat: number;
   lng: number;
 }) {

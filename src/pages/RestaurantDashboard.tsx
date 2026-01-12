@@ -35,6 +35,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// const [freshness, setFreshness] = useState<string | undefined>(undefined);
+const [freshness, setFreshness] = useState<string | null>(null);
+
 const RestaurantDashboard = () => {
   const [mealType, setMealType] = useState("lunch");
 
@@ -94,14 +97,17 @@ const RestaurantDashboard = () => {
   }
 
   try {
-    await savePickupRequest({
-     restaurantName: "Green Kitchen Restaurant",
-     foodType,
-     quantity: Number(excessFood),
-     freshness: "4 hours",
-     lat: 28.6139,
-     lng: 77.2090,
-    });
+  await savePickupRequest({
+  restaurantName: "Green Kitchen Restaurant",
+  foodType,
+  quantity: Number(excessFood),
+  freshnessWindow: "4 hours",
+  lat: 28.6139,
+  lng: 77.2090,
+  timestamp: new Date(),
+});
+
+
 
 
     toast({
@@ -120,7 +126,7 @@ const RestaurantDashboard = () => {
 };
 
 const handleNotify = async () => {
-  if (!foodType || !quantity || !freshness) {
+  if (!foodType || !excessFood || !freshness) {
     toast({
       title: "Please fill all fields",
       description: "Food type, quantity and freshness window are required.",
@@ -131,21 +137,23 @@ const handleNotify = async () => {
 
   try {
     await savePickupRequest({
-      foodType,
-      quantity: Number(quantity),
-      freshnessWindow: freshness,
-      restaurantName: "Green Kitchen Restaurant",
-      timestamp: new Date(),
-    });
+  foodType,
+  quantity: Number(excessFood),
+  freshnessWindow: freshness,
+  restaurantName: "Green Kitchen Restaurant",
+  lat: 28.6139,
+  lng: 77.2090,
+  timestamp: new Date(),
+});
+
 
     toast({
       title: "Excess Food Reported!",
       description: "Nearby NGOs have been notified.",
     });
 
-    // Reset form
     setFoodType("");
-    setQuantity("");
+    setExcessFood("");
     setFreshness(null);
   } catch (error) {
     toast({
@@ -155,6 +163,7 @@ const handleNotify = async () => {
     });
   }
 };
+
 
 
   return (
@@ -363,7 +372,12 @@ const handleNotify = async () => {
                   {["2 hours", "4 hours", "6 hours"].map((time) => (
                     <button
                       key={time}
-                      className="p-2 rounded-lg border border-border hover:border-primary/50 text-sm transition-colors"
+                      onClick={() => setFreshness(time)}
+                      className={`p-2 rounded-lg border border-border hover:border-primary/50 text-sm transition-colors${
+                        freshness === time
+                       ? "border-green-500 bg-green-500/10"
+                       : "border-border hover:border-primary/50"
+                       }`}
                     >
                       <Clock className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
                       {time}
